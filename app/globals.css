@@ -1,0 +1,178 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ */
+/*  Alivio Search Partners — design tokens                             */
+/*  Aesthetic: quiet money. Deep ink navy anchor, warm off-white       */
+/*  paper, one deep terracotta accent (chosen and committed), warm     */
+/*  stone for secondary text, hairline "ledger" rules throughout.      */
+/* ------------------------------------------------------------------ */
+
+:root {
+  /* Core palette */
+  --ink: #0c1b2a; /* deep ink navy — anchor */
+  --ink-soft: #14283c; /* raised surfaces on dark sections */
+  --paper: #faf8f4; /* warm off-white background */
+  --paper-dim: #f3efe6; /* alternate light surface */
+  --terra: #9c4227; /* deep terracotta — the single accent */
+  --terra-dark: #7e3218; /* accent hover / active */
+  --terra-light: #d29a82; /* accent usable on ink backgrounds */
+  --stone: #625e55; /* warm gray — secondary text on paper (AA on paper) */
+  --stone-light: #a9b2ba; /* secondary text on ink (AA on ink) */
+  --line: #e2ddd2; /* hairline rules on paper */
+  --line-ink: rgba(250, 248, 244, 0.18); /* hairline rules on ink */
+
+  /* shadcn/ui semantic variables mapped to the brand */
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: var(--paper);
+  --card-foreground: var(--ink);
+  --popover: #fffdf9;
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: var(--paper);
+  --secondary: var(--paper-dim);
+  --secondary-foreground: var(--ink);
+  --muted: var(--paper-dim);
+  --muted-foreground: var(--stone);
+  --accent: var(--paper-dim);
+  --accent-foreground: var(--ink);
+  --destructive: #8f2f16;
+  --destructive-foreground: var(--paper);
+  --border: var(--line);
+  --input: var(--line);
+  --ring: var(--terra);
+  --radius: 0rem; /* sharp corners — editorial, not SaaS */
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-paper: var(--paper);
+  --color-paper-dim: var(--paper-dim);
+  --color-terra: var(--terra);
+  --color-terra-dark: var(--terra-dark);
+  --color-terra-light: var(--terra-light);
+  --color-stone: var(--stone);
+  --color-stone-light: var(--stone-light);
+  --color-line: var(--line);
+  --color-line-ink: var(--line-ink);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: 0rem;
+  --radius-md: 0rem;
+  --radius-lg: 0rem;
+  --radius-xl: 0rem;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+
+  /* Type scale — clamp-based editorial sizes */
+  --text-headline-xl: clamp(2.75rem, 1.3rem + 5vw, 5.5rem);
+  --text-headline-lg: clamp(2.25rem, 1.2rem + 3.6vw, 4.25rem);
+  --text-headline-md: clamp(1.75rem, 1.1rem + 2.2vw, 3rem);
+  --text-headline-sm: clamp(1.375rem, 1.05rem + 1.2vw, 2rem);
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--terra);
+  color: var(--paper);
+}
+
+/* Visible keyboard focus everywhere */
+:focus-visible {
+  outline: 2px solid var(--terra);
+  outline-offset: 3px;
+}
+.on-ink :focus-visible,
+[data-theme="ink"] :focus-visible {
+  outline-color: var(--terra-light);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Utilities                                                          */
+/* ------------------------------------------------------------------ */
+
+@utility font-display {
+  font-family: var(--font-fraunces), ui-serif, Georgia, serif;
+}
+
+@utility text-headline-xl {
+  font-size: var(--text-headline-xl);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+}
+@utility text-headline-lg {
+  font-size: var(--text-headline-lg);
+  line-height: 1.05;
+  letter-spacing: -0.018em;
+}
+@utility text-headline-md {
+  font-size: var(--text-headline-md);
+  line-height: 1.12;
+  letter-spacing: -0.014em;
+}
+@utility text-headline-sm {
+  font-size: var(--text-headline-sm);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+/* Letterspaced uppercase eyebrow / ledger metadata labels */
+@utility text-eyebrow {
+  font-size: 0.6875rem;
+  line-height: 1.4;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* Duotone photography treatment — apply to every placeholder image.
+   TODO: keep this filter when swapping in licensed photography so all
+   imagery shares one muted, desaturated grade. */
+@utility img-duotone {
+  filter: grayscale(1) sepia(0.16) brightness(0.9) contrast(1.06);
+}
+
+/* Small-caps wordmark suffix */
+@utility text-smallcaps {
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.16em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
