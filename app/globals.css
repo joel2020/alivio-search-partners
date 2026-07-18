@@ -1,50 +1,111 @@
 @import "tailwindcss";
 
 /* ------------------------------------------------------------------ */
-/*  Alivio Search Partners — design tokens                             */
-/*  Aesthetic: quiet money. Deep ink navy anchor, warm off-white       */
-/*  paper, one deep terracotta accent (chosen and committed), warm     */
-/*  stone for secondary text, hairline "ledger" rules throughout.      */
+/*  Alivio — design tokens, v2 "bold modern SaaS"                      */
+/*                                                                     */
+/*  Dark-first system: deep near-black base, one electric accent       */
+/*  running clinical blue -> cyan (health-trust anchor, not crypto),   */
+/*  glass surfaces, 1px hairlines, generous type.                      */
+/*                                                                     */
+/*  The v1 "quiet money" tokens (ink/paper/terra) are kept below       */
+/*  until every page is migrated to v2 — do not remove them yet.       */
 /* ------------------------------------------------------------------ */
 
 :root {
-  /* Core palette */
-  --ink: #0c1b2a; /* deep ink navy — anchor */
-  --ink-soft: #14283c; /* raised surfaces on dark sections */
-  --paper: #faf8f4; /* warm off-white background */
-  --paper-dim: #f3efe6; /* alternate light surface */
-  --terra: #9c4227; /* deep terracotta — the single accent */
-  --terra-dark: #7e3218; /* accent hover / active */
-  --terra-light: #d29a82; /* accent usable on ink backgrounds */
-  --stone: #625e55; /* warm gray — secondary text on paper (AA on paper) */
-  --stone-light: #a9b2ba; /* secondary text on ink (AA on ink) */
-  --line: #e2ddd2; /* hairline rules on paper */
-  --line-ink: rgba(250, 248, 244, 0.18); /* hairline rules on ink */
+  /* v2 core palette — dark theme */
+  --bg0: #07080c; /* page base, near-black */
+  --bg1: #0a0c12; /* section base */
+  --bg2: #10141d; /* raised panel */
+  --srf: rgba(255, 255, 255, 0.04); /* glass surface */
+  --srf-2: rgba(255, 255, 255, 0.07); /* glass surface, hover/raised */
+  --line-1: rgba(255, 255, 255, 0.08); /* hairline */
+  --line-2: rgba(255, 255, 255, 0.16); /* hairline, emphasized */
+  --tx-1: #eef2f8; /* primary text */
+  --tx-2: #a8b1c0; /* secondary text (AA on bg0/bg1) */
+  --tx-3: #717a8a; /* tertiary/meta text (AA-large only) */
 
-  /* shadcn/ui semantic variables mapped to the brand */
-  --background: var(--paper);
-  --foreground: var(--ink);
-  --card: var(--paper);
-  --card-foreground: var(--ink);
-  --popover: #fffdf9;
-  --popover-foreground: var(--ink);
-  --primary: var(--ink);
-  --primary-foreground: var(--paper);
-  --secondary: var(--paper-dim);
-  --secondary-foreground: var(--ink);
-  --muted: var(--paper-dim);
-  --muted-foreground: var(--stone);
-  --accent: var(--paper-dim);
-  --accent-foreground: var(--ink);
-  --destructive: #8f2f16;
-  --destructive-foreground: var(--paper);
-  --border: var(--line);
-  --input: var(--line);
-  --ring: var(--terra);
-  --radius: 0rem; /* sharp corners — editorial, not SaaS */
+  /* Accent: clinical blue -> cyan */
+  --acc: #4596ff; /* electric clinical blue */
+  --acc-2: #2dd9c8; /* cyan-teal terminus */
+  --acc-deep: #1155c9; /* pressed / deep anchor */
+  --acc-ink: #051325; /* text on accent fills */
+  --grad-acc: linear-gradient(135deg, var(--acc) 0%, var(--acc-2) 100%);
+
+  /* Semantic */
+  --good: #34d399;
+  --warn: #fbbf24;
+  --bad: #f87171;
+
+  /* v2 light band palette (light sections inside dark pages, and the
+     future full light mode) */
+  --lt-bg: #f7f8fa;
+  --lt-srf: #ffffff;
+  --lt-line: #e4e7ec;
+  --lt-tx-1: #0b1220;
+  --lt-tx-2: #4c5666;
+
+  /* ---------------- v1 legacy tokens (unmigrated pages) ------------ */
+  --ink: #0c1b2a;
+  --ink-soft: #14283c;
+  --paper: #faf8f4;
+  --paper-dim: #f3efe6;
+  --terra: #9c4227;
+  --terra-dark: #7e3218;
+  --terra-light: #d29a82;
+  --stone: #625e55;
+  --stone-light: #a9b2ba;
+  --line: #e2ddd2;
+  --line-ink: rgba(250, 248, 244, 0.18);
+
+  /* shadcn/ui semantic variables — mapped to the v2 dark system */
+  --background: var(--bg0);
+  --foreground: var(--tx-1);
+  --card: var(--bg2);
+  --card-foreground: var(--tx-1);
+  --popover: var(--bg2);
+  --popover-foreground: var(--tx-1);
+  --primary: var(--acc);
+  --primary-foreground: var(--acc-ink);
+  --secondary: var(--srf-2);
+  --secondary-foreground: var(--tx-1);
+  --muted: var(--srf);
+  --muted-foreground: var(--tx-2);
+  --accent: var(--srf-2);
+  --accent-foreground: var(--tx-1);
+  --destructive: var(--bad);
+  --destructive-foreground: var(--bg0);
+  --border: var(--line-1);
+  --input: var(--line-2);
+  --ring: var(--acc);
+  --radius: 0.625rem;
 }
 
 @theme inline {
+  /* v2 */
+  --color-bg0: var(--bg0);
+  --color-bg1: var(--bg1);
+  --color-bg2: var(--bg2);
+  --color-srf: var(--srf);
+  --color-srf-2: var(--srf-2);
+  --color-line-1: var(--line-1);
+  --color-line-2: var(--line-2);
+  --color-tx-1: var(--tx-1);
+  --color-tx-2: var(--tx-2);
+  --color-tx-3: var(--tx-3);
+  --color-acc: var(--acc);
+  --color-acc-2: var(--acc-2);
+  --color-acc-deep: var(--acc-deep);
+  --color-acc-ink: var(--acc-ink);
+  --color-good: var(--good);
+  --color-warn: var(--warn);
+  --color-bad: var(--bad);
+  --color-lt-bg: var(--lt-bg);
+  --color-lt-srf: var(--lt-srf);
+  --color-lt-line: var(--lt-line);
+  --color-lt-tx-1: var(--lt-tx-1);
+  --color-lt-tx-2: var(--lt-tx-2);
+
+  /* v1 legacy */
   --color-ink: var(--ink);
   --color-ink-soft: var(--ink-soft);
   --color-paper: var(--paper);
@@ -57,6 +118,7 @@
   --color-line: var(--line);
   --color-line-ink: var(--line-ink);
 
+  /* shadcn semantics */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -77,42 +139,42 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  --radius-sm: 0rem;
-  --radius-md: 0rem;
-  --radius-lg: 0rem;
-  --radius-xl: 0rem;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 6px);
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-display: var(--font-inter-tight), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif-legacy: var(--font-fraunces), ui-serif, Georgia, serif;
 
-  /* Type scale — clamp-based editorial sizes */
-  --text-headline-xl: clamp(2.75rem, 1.3rem + 5vw, 5.5rem);
-  --text-headline-lg: clamp(2.25rem, 1.2rem + 3.6vw, 4.25rem);
-  --text-headline-md: clamp(1.75rem, 1.1rem + 2.2vw, 3rem);
-  --text-headline-sm: clamp(1.375rem, 1.05rem + 1.2vw, 2rem);
+  /* Type scale.
+     NOTE: utilities are named text-headline-* (NOT text-display-*) on
+     purpose — the Apollo Chrome extension injects a conflicting
+     .text-display-lg class and our buyers run Apollo. */
+  --text-hero: clamp(3rem, 1.6rem + 5.2vw, 5.5rem); /* ~88px desktop */
+  --text-headline-xl: clamp(2.75rem, 1.3rem + 5vw, 5rem);
+  --text-headline-lg: clamp(2.25rem, 1.2rem + 3.6vw, 3.75rem);
+  --text-headline-md: clamp(1.75rem, 1.1rem + 2.2vw, 2.75rem);
+  --text-headline-sm: clamp(1.375rem, 1.05rem + 1.2vw, 1.875rem);
 }
 
 body {
-  background: var(--paper);
-  color: var(--ink);
+  background: var(--bg0);
+  color: var(--tx-1);
   font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
 ::selection {
-  background: var(--terra);
-  color: var(--paper);
+  background: var(--acc);
+  color: var(--acc-ink);
 }
 
-/* Visible keyboard focus everywhere */
 :focus-visible {
-  outline: 2px solid var(--terra);
+  outline: 2px solid var(--acc);
   outline-offset: 3px;
-}
-.on-ink :focus-visible,
-[data-theme="ink"] :focus-visible {
-  outline-color: var(--terra-light);
 }
 
 /* ------------------------------------------------------------------ */
@@ -120,50 +182,139 @@ body {
 /* ------------------------------------------------------------------ */
 
 @utility font-display {
+  font-family: var(--font-inter-tight), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Legacy serif — still used by unmigrated v1 pages */
+@utility font-serif-legacy {
   font-family: var(--font-fraunces), ui-serif, Georgia, serif;
 }
 
+@utility text-hero {
+  font-size: var(--text-hero);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  font-weight: 600;
+}
 @utility text-headline-xl {
   font-size: var(--text-headline-xl);
   line-height: 1.02;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
 }
 @utility text-headline-lg {
   font-size: var(--text-headline-lg);
   line-height: 1.05;
-  letter-spacing: -0.018em;
+  letter-spacing: -0.025em;
 }
 @utility text-headline-md {
   font-size: var(--text-headline-md);
-  line-height: 1.12;
-  letter-spacing: -0.014em;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
 }
 @utility text-headline-sm {
   font-size: var(--text-headline-sm);
   line-height: 1.2;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.012em;
 }
 
-/* Letterspaced uppercase eyebrow / ledger metadata labels */
 @utility text-eyebrow {
   font-size: 0.6875rem;
   line-height: 1.4;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 550;
 }
 
-/* Duotone photography treatment — apply to every placeholder image.
-   TODO: keep this filter when swapping in licensed photography so all
-   imagery shares one muted, desaturated grade. */
+/* Accent gradient text */
+@utility text-grad {
+  background: var(--grad-acc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Glass panel: tinted surface + hairline + inner top light */
+@utility glass {
+  background: var(--srf);
+  border: 1px solid var(--line-1);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+@utility glass-raised {
+  background: var(--srf-2);
+  border: 1px solid var(--line-2);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    0 16px 48px rgba(0, 0, 0, 0.45);
+}
+
+/* Soft accent glow for CTAs and hero art */
+@utility glow-acc {
+  box-shadow:
+    0 0 0 1px rgba(69, 150, 255, 0.35),
+    0 8px 40px rgba(69, 150, 255, 0.25);
+}
+
+/* Faint blueprint grid backdrop */
+@utility bg-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/* Legacy duotone photo treatment (v1 pages) */
 @utility img-duotone {
   filter: grayscale(1) sepia(0.16) brightness(0.9) contrast(1.06);
 }
-
-/* Small-caps wordmark suffix */
 @utility text-smallcaps {
   font-variant-caps: all-small-caps;
   letter-spacing: 0.16em;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Motion                                                             */
+/* ------------------------------------------------------------------ */
+
+/* Aurora: two slow-drifting radial blobs behind the hero */
+@keyframes aurora-a {
+  0%,
+  100% {
+    transform: translate3d(-8%, -6%, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(10%, 8%, 0) scale(1.15);
+  }
+}
+@keyframes aurora-b {
+  0%,
+  100% {
+    transform: translate3d(6%, 10%, 0) scale(1.1);
+  }
+  50% {
+    transform: translate3d(-10%, -8%, 0) scale(0.95);
+  }
+}
+.aurora-a {
+  animation: aurora-a 26s ease-in-out infinite;
+}
+.aurora-b {
+  animation: aurora-b 32s ease-in-out infinite;
+}
+
+/* Logo marquee */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: marquee 42s linear infinite;
+}
+.marquee-mask {
+  mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -174,5 +325,10 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+  .aurora-a,
+  .aurora-b,
+  .animate-marquee {
+    animation: none !important;
   }
 }

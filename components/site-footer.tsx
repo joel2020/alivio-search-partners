@@ -5,17 +5,15 @@ import { site, offices, footer } from "@/content/site";
 
 export function SiteFooter() {
   return (
-    <footer className="on-ink bg-ink text-paper">
+    <footer className="border-t border-line-1 bg-bg0 text-tx-1">
       <div className="mx-auto max-w-6xl px-6 py-16 lg:px-8 lg:py-20">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.4fr]">
           <div>
-            <Logo onInk />
-            <p className="mt-6 max-w-xs text-sm leading-relaxed text-stone-light">
-              {site.tagline}
-            </p>
+            <Logo />
+            <p className="mt-6 max-w-xs text-sm leading-relaxed text-tx-2">{site.tagline}</p>
             <a
               href={site.linkedin}
-              className="mt-6 inline-flex items-center gap-2 text-sm text-stone-light transition-colors hover:text-paper"
+              className="mt-6 inline-flex items-center gap-2 text-sm text-tx-2 transition-colors hover:text-tx-1"
               aria-label={`${site.name} on LinkedIn`}
             >
               {/* TODO: confirm final LinkedIn URL */}
@@ -27,13 +25,13 @@ export function SiteFooter() {
           </div>
 
           <nav aria-label="Footer — practices">
-            <p className="text-eyebrow text-stone-light">{footer.practices.heading}</p>
+            <p className="text-eyebrow text-tx-3">{footer.practices.heading}</p>
             <ul className="mt-5 space-y-3">
               {footer.practices.links.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-paper/90 transition-colors hover:text-terra-light"
+                    className="text-sm text-tx-2 transition-colors hover:text-acc"
                   >
                     {link.label}
                   </Link>
@@ -43,13 +41,13 @@ export function SiteFooter() {
           </nav>
 
           <nav aria-label="Footer — company">
-            <p className="text-eyebrow text-stone-light">{footer.company.heading}</p>
+            <p className="text-eyebrow text-tx-3">{footer.company.heading}</p>
             <ul className="mt-5 space-y-3">
               {footer.company.links.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-paper/90 transition-colors hover:text-terra-light"
+                    className="text-sm text-tx-2 transition-colors hover:text-acc"
                   >
                     {link.label}
                   </Link>
@@ -59,23 +57,21 @@ export function SiteFooter() {
           </nav>
 
           <div>
-            <p className="text-eyebrow text-stone-light">{footer.offices.heading}</p>
+            <p className="text-eyebrow text-tx-3">{footer.offices.heading}</p>
             <ul className="mt-5 space-y-4">
               {offices.map((office) => (
-                <li key={office.city} className="text-sm leading-relaxed text-paper/90">
-                  <span className="font-medium">{office.city}</span>
+                <li key={office.city} className="text-sm leading-relaxed">
+                  <span className="font-medium text-tx-1">{office.city}</span>
                   <br />
-                  <span className="text-stone-light">
+                  <span className="text-tx-3">
                     {office.address}, {office.postal}
                   </span>
                 </li>
               ))}
             </ul>
             <div className="mt-8">
-              <p className="text-eyebrow text-stone-light">{footer.newsletter.heading}</p>
-              <p className="mt-3 text-sm leading-relaxed text-stone-light">
-                {footer.newsletter.body}
-              </p>
+              <p className="text-eyebrow text-tx-3">{footer.newsletter.heading}</p>
+              <p className="mt-3 text-sm leading-relaxed text-tx-2">{footer.newsletter.body}</p>
               <div className="mt-4">
                 <NewsletterForm />
               </div>
@@ -83,14 +79,17 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col gap-4 border-t border-line-ink pt-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs text-stone-light">{footer.legal.line}</p>
-          <div className="flex gap-6">
+        <div className="mt-16 flex flex-col gap-4 border-t border-line-1 pt-6 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p className="text-xs text-tx-3">{footer.legal.line}</p>
+            <p className="mt-2 max-w-xl text-xs leading-relaxed text-tx-3">{footer.privacyNote}</p>
+          </div>
+          <div className="flex shrink-0 gap-6">
             {footer.legal.links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-xs text-stone-light transition-colors hover:text-paper"
+                className="text-xs text-tx-3 transition-colors hover:text-tx-1"
               >
                 {link.label}
               </Link>

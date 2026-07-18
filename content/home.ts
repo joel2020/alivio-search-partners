@@ -1,192 +1,258 @@
 /**
- * Home page content.
+ * Home page content — v2 "bold modern SaaS" positioning.
+ *
+ * Primary audience: employers (hospitals, health systems, clinics).
+ * Core message: Alivio's AI recruiting agents source, score, screen
+ * (by voice), and engage qualified clinicians so roles fill in days,
+ * not months — with human recruiters accountable for every hire.
  */
 
 export const hero = {
+  badge: "AI recruiting agents for healthcare",
   /*
-   * Headline options considered:
-   * 1. "Leadership search for the Americas." — clear, geographic, but passive.
-   * 2. "The weight of the hire, lifted." — on-narrative, but leads with metaphor before category.
-   * 3. "Consequential hires, made with certainty." — states the stakes and the promise; category is carried by the sub-line.
-   * Selected: option 3. It passes the CHRO test — it names what the client is buying (certainty on a consequential decision) without naming ourselves.
+   * Headline states the buyer's outcome, not our category. "Days, not
+   * months" is the time-to-fill promise the rest of the page proves.
+   * Rendered as one balanced block; the accent segment takes the
+   * gradient.
    */
-  eyebrow: "Retained executive search · New York · Miami · Bogotá",
-  headlineLines: ["Consequential hires,", "made with certainty."],
-  sub: "Alivio Search Partners is a retained search and talent advisory firm for healthcare, technology, and nearshore LATAM leadership. We take on a small number of searches and finish every one of them.",
-  primaryCta: { label: "Start a Search", href: "/contact" },
-  secondaryCta: { label: "Hire Nearshore Talent", href: "/practices/nearshore-latam" },
+  headline: "Clinical roles filled in",
+  headlineAccent: "days, not months.",
+  sub: "Alivio's AI recruiting agents source, score, and voice-screen qualified nurses, clinicians, and healthcare leaders around the clock — and our recruiters close them. You get a screened shortlist, not a stack of resumes.",
+  primaryCta: { label: "Book a demo", href: "/contact" },
+  secondaryCta: { label: "See how it works", href: "#how-it-works" },
 } as const;
 
-export const credibility = {
-  statLine: "Retained searches across four countries. Offices in New York, Miami, and Bogotá.",
-  /* TODO: replace with real client logos (grayscale SVG or PNG, ~120px wide).
-     These names render as typeset placeholders until then. */
+export const trustBar = {
+  label: "Built for hospitals, health systems, and clinics", // TODO: swap for real client logos once consented
+  /* Typeset placeholders until real grayscale logos exist. */
   logos: [
     "Meridian Health", // TODO: replace with real client
     "Vantage Bio", // TODO: replace with real client
-    "Northline Capital", // TODO: replace with real client
-    "Cobalt Systems", // TODO: replace with real client
+    "Northline Medical", // TODO: replace with real client
+    "Cobalt Care", // TODO: replace with real client
     "Andina Group", // TODO: replace with real client
-    "Harbor Digital", // TODO: replace with real client
+    "Harbor Health", // TODO: replace with real client
   ],
 } as const;
 
-export const practicesIntro = {
-  eyebrow: "Practices",
-  heading: "Three practices. One standard.",
-  body: "We work where leadership failure is most expensive: clinical enterprises, venture-backed technology, and distributed teams across Latin America.",
+export const problem = {
+  eyebrow: "The problem",
+  heading: "Clinical hiring is slow because every step of it is manual.",
+  body: "The average clinical vacancy takes about three months to fill and costs thousands of dollars per open day in coverage and lost revenue. Not because the candidates don't exist — because sourcing, screening, and follow-up are still done by hand, one candidate at a time.",
+  points: [
+    {
+      stat: "90+ days", // TODO: confirm figure and source
+      label: "Typical time-to-fill for a specialized clinical role",
+    },
+    {
+      stat: "Dozens of hours",
+      label: "Recruiter time consumed per hire on manual screening and phone tag",
+    },
+    {
+      stat: "Days of silence",
+      label: "Typical response lag that loses interested candidates to faster offers",
+    },
+  ],
 } as const;
 
-export const practiceCards = [
-  {
-    index: "01",
-    meta: { area: "Healthcare & Life Sciences", scope: "C-suite · VP · Clinical", geography: "US National" },
-    title: "Healthcare & Life Sciences",
-    body: "Executive and clinical leadership for health systems, digital health, medtech, biotech, and payers. Leaders who can run both the mission and the margin.",
-    href: "/practices/healthcare",
-  },
-  {
-    index: "02",
-    meta: { area: "Technology", scope: "Product · Engineering · GTM", geography: "US · Remote" },
-    title: "Technology",
-    body: "Product, engineering, and go-to-market leadership for venture-backed and growth-stage companies. The executives who take companies from proven to scaled.",
-    href: "/practices/technology",
-  },
-  {
-    index: "03",
-    meta: { area: "Nearshore Talent", scope: "Engineering · Ops · Finance", geography: "LATAM" },
-    title: "Nearshore Talent — LATAM",
-    body: "Senior, timezone-aligned teams in Colombia, Mexico, Argentina, and Brazil — built with the same rigor as an executive search, at 40 to 60 percent lower fully-loaded cost.",
-    href: "/practices/nearshore-latam",
-  },
-] as const;
-
-export const howWeWork = {
-  eyebrow: "How we work",
-  heading: "A retained process, run to a calendar.",
-  body: "Every search follows the same four movements. Clients know what they will receive, and when, before we begin.",
+export const howItWorks = {
+  eyebrow: "How it works",
+  heading: "Six agents. One pipeline. Zero waiting.",
+  body: "Each stage of the pipeline is run by a specialized AI agent and reviewed by a human recruiter. Every action is logged, and you can watch the pipeline work in real time.",
   steps: [
     {
-      number: "1",
-      name: "Brief",
-      window: "Days 1–10",
-      body: "We interrogate the role before we sell it. Success profile, stakeholder alignment, compensation architecture, and the honest reasons the last person left.",
+      index: "1",
+      name: "Source",
+      capability: "AI sourcing agent",
+      body: "Scans licensed candidate pools and inbound channels continuously to build the field for every open role.",
     },
     {
-      number: "2",
-      name: "Map",
-      window: "Days 10–21",
-      body: "A complete map of the relevant market — who holds this role today, who is ready for it, and who would never move. You see the whole field, not a shortlist of the willing.",
+      index: "2",
+      name: "Match",
+      capability: "Scoring & matching",
+      body: "Scores every candidate against your role's must-haves — license, specialty, experience, location, shift.",
     },
     {
-      number: "3",
-      name: "Assess",
-      window: "Days 21–60",
-      body: "Structured interviews, calibrated scorecards, and referencing that starts before the offer stage. We present candidates with the case against them included.",
+      index: "3",
+      name: "Screen",
+      capability: "AI voice screening",
+      body: "Calls qualified candidates, verifies licensure and availability by voice, and transcribes every conversation.",
     },
     {
-      number: "4",
-      name: "Place",
-      window: "Days 60–90",
-      body: "Offer design, close management, and a structured first-90-days plan. Our involvement ends when the leader is performing, not when the invoice is paid.",
+      index: "4",
+      name: "Engage",
+      capability: "Automated outreach",
+      body: "Runs personalized outreach sequences and answers within minutes, so interested candidates never go cold.",
+    },
+    {
+      index: "5",
+      name: "Shortlist",
+      capability: "Client shortlists",
+      body: "Delivers a screened, ranked shortlist with transcripts, scores, and a recruiter's recommendation attached.",
+    },
+    {
+      index: "6",
+      name: "Hire",
+      capability: "Human recruiters",
+      body: "Our recruiters run interviews, references, and offers to signature. AI does the volume; people close.",
     },
   ],
-  link: { label: "See the full methodology", href: "/process" },
 } as const;
 
-export const results = {
-  eyebrow: "Results",
-  heading: "We measure what clients actually buy.",
+export const capabilities = {
+  eyebrow: "The platform",
+  heading: "Everything between a vacancy and a signed offer.",
+  body: "One system runs the whole pipeline — and you can see all of it working.",
+  cards: [
+    {
+      eyebrow: "Sourcing",
+      title: "AI candidate sourcing",
+      body: "Agents work every sourcing channel around the clock and add qualified nurses, clinicians, and leaders to your pipeline while your team sleeps.",
+      wide: true,
+    },
+    {
+      eyebrow: "Matching",
+      title: "Scoring & matching",
+      body: "Every candidate is scored against the role's actual requirements, with the reasoning shown — not a black-box rank.",
+    },
+    {
+      eyebrow: "Screening",
+      title: "AI voice screening",
+      body: "Automated screening calls verify licensure, availability, and interest — recorded, transcribed, and summarized for review.",
+    },
+    {
+      eyebrow: "Engagement",
+      title: "Outreach sequences",
+      body: "Multi-step, personalized outreach that follows up automatically and hands hot replies to a human immediately.",
+    },
+    {
+      eyebrow: "Reporting",
+      title: "Shortlists & weekly reports",
+      body: "Clients get ranked shortlists, structured feedback loops, and a weekly report on exactly what moved — no status-call archaeology.",
+    },
+    {
+      eyebrow: "Transparency",
+      title: "Agent activity log",
+      body: "Every agent action is logged and reviewable. You can audit what the AI did on your search, candidate by candidate.",
+      wide: true,
+    },
+  ],
+} as const;
+
+export const metrics = {
+  eyebrow: "The results",
+  heading: "What the pipeline produces.",
+  /* TODO: replace all four with real, defensible platform figures before launch */
   stats: [
-    {
-      value: "175+",
-      label: "Retained searches completed", // TODO: replace with real figure
-    },
-    {
-      value: "21 days",
-      label: "Average time to calibrated shortlist", // TODO: replace with real figure
-    },
-    {
-      value: "94%",
-      label: "Placements still in seat at 12 months", // TODO: replace with real figure
-    },
-    {
-      value: "6",
-      label: "Countries with completed searches", // TODO: replace with real figure
-    },
+    { value: 1200, suffix: "+", label: "Candidates sourced and scored by the platform" },
+    { value: 300, suffix: "+", label: "AI voice screens completed" },
+    { value: 6, suffix: " days", label: "Average time to a screened shortlist" },
+    { value: 24, suffix: "/7", label: "Pipeline coverage — agents never sleep" },
   ],
-  note: "Every placement carries a 12-month replacement guarantee. If the leader leaves, we run the search again at no fee.",
-} as const;
-
-export const nearshoreSpotlight = {
-  eyebrow: "Nearshore Talent — LATAM",
-  heading: "The team you meant to build, four hours south.",
-  body: "Nearshore is not an outsourcing decision. It is a talent-strategy decision — senior engineers, finance leads, and operators in Colombia, Mexico, Argentina, and Brazil who work your hours, join your standups, and stay. We run the search, the compliance, and the employment infrastructure.",
-  comparison: {
-    title: "Fully-loaded annual cost, senior software engineer",
-    note: "Includes salary, benefits, employer taxes, and EOR fees. Figures are directional market medians.", // TODO: replace with real, sourced figures
-    rows: [
-      { label: "United States", amount: 265000, display: "$265,000" }, // TODO: replace with real figure
-      { label: "LATAM nearshore", amount: 118000, display: "$118,000" }, // TODO: replace with real figure
-    ],
-    takeaway: "40–60% cost efficiency, without the timezone tax.",
-  },
-  points: [
-    "Timezone overlap of 6–8 working hours with US Eastern",
-    "Bilingual senior talent pools in Colombia, Mexico, Argentina, and Brazil",
-    "Full compliance: contracts, payroll, and local labor law through vetted EOR partners",
-  ],
-  cta: { label: "Explore the nearshore practice", href: "/practices/nearshore-latam" },
-} as const;
-
-export const engineSpotlight = {
-  eyebrow: "Product · AI Candidate Engine",
-  heading: "Not every role needs a retained search.",
-  body: "For continuous, hard-to-fill hiring below the executive line, we install the AI Candidate Engine: AI-powered sourcing, structured scoring, and personalized outreach — calibrated slates in 48 hours, every one reviewed by a partner before it ships.",
-  points: [
-    "First calibrated slate within 48 hours of kickoff", // TODO: confirm claim
-    "Six modules: Source, Score, Engage, Prioritize, Report, Optimize",
-    "Human oversight on every shortlist and every outreach",
-  ],
-  cta: { label: "See the engine", href: "/product" },
+  note: "Every shortlist is reviewed by a licensed-market recruiter before it reaches you. AI runs the volume; a human signs off on the quality.",
 } as const;
 
 export const testimonials = {
   eyebrow: "What clients say",
+  /* TODO: replace with real, attributed, consented client quotes */
   items: [
     {
       quote:
-        "They told us in week two that our compensation range would lose the search, and they were right. We fixed it, and the VP they placed rebuilt our clinical operations in a year.",
-      name: "Placeholder Name", // TODO: replace with real client
+        "We had two Med-Surg vacancies open for a quarter. Alivio's shortlist arrived in the first week — screened, scored, with transcripts. We hired both.",
+      name: "Placeholder Name", // TODO: real client
+      title: "Chief Nursing Officer",
+      company: "Regional health system",
+    },
+    {
+      quote:
+        "The difference is the screening. Every candidate we met had already been voice-screened on licensure and availability. Zero wasted interviews.",
+      name: "Placeholder Name", // TODO: real client
+      title: "VP, Talent Acquisition",
+      company: "Multi-site clinic group",
+    },
+    {
+      quote:
+        "The weekly report tells me exactly what the agents did and what my recruiter recommends. It's the most transparent search process we've run.",
+      name: "Placeholder Name", // TODO: real client
       title: "Chief Human Resources Officer",
-      company: "Regional health system, $2B revenue",
-    },
-    {
-      quote:
-        "Alivio mapped the entire market before showing us a single resume. When the shortlist arrived, there was nothing to second-guess. We hired the first candidate we met.",
-      name: "Placeholder Name", // TODO: replace with real client
-      title: "Chief Executive Officer",
-      company: "Series C infrastructure software company",
-    },
-    {
-      quote:
-        "Our Bogotá engineering team has lower attrition than our US team. That was not the outcome we were promised by anyone else we spoke to.",
-      name: "Placeholder Name", // TODO: replace with real client
-      title: "Chief Technology Officer",
-      company: "Growth-stage fintech",
+      company: "Academic medical center",
     },
   ],
 } as const;
 
-export const insightsTeaser = {
-  eyebrow: "Insights",
-  heading: "Notes from the field.",
-  link: { label: "All insights", href: "/insights" },
+export const integrations = {
+  eyebrow: "Integrations",
+  heading: "Meets your stack where it is.",
+  body: "Email-native today. ATS and calendar integrations are in development — join the waitlist and we'll notify you when yours ships.",
+  items: [
+    { name: "Email (outreach & inbound)", status: "live" },
+    { name: "Greenhouse", status: "soon" },
+    { name: "Workday", status: "soon" },
+    { name: "iCIMS", status: "soon" },
+    { name: "Google Calendar", status: "soon" },
+    { name: "Outlook Calendar", status: "soon" },
+  ],
+} as const;
+
+export const engagement = {
+  eyebrow: "Engagement model",
+  heading: "Priced like a partner, not a job board.",
+  body: "Every engagement starts with a conversation about your roles, volume, and timeline. No seat licenses, no self-serve tier — a recruiting operation configured to your openings.",
+  tiers: [
+    {
+      name: "Per-role search",
+      description:
+        "A single hard-to-fill role, run through the full agent pipeline with a dedicated recruiter.",
+      bullets: ["Screened shortlist in days", "Voice-screen transcripts included", "Weekly progress report"],
+    },
+    {
+      name: "Pipeline partnership",
+      description:
+        "Continuous hiring across a set of roles — the pipeline stays warm, and shortlists keep arriving.",
+      bullets: ["Always-on sourcing and screening", "Client portal and feedback loop", "Quarterly hiring-market review"],
+      featured: true,
+    },
+    {
+      name: "Enterprise",
+      description:
+        "Multi-facility health systems with custom volume, compliance, and reporting requirements.",
+      bullets: ["Custom SLAs and reporting", "Dedicated recruiting pod", "Security and compliance review"],
+    },
+  ],
+  cta: { label: "Talk to us about pricing", href: "/contact" },
+} as const;
+
+export const faq = {
+  eyebrow: "Questions",
+  heading: "The questions every hiring leader asks.",
+  items: [
+    {
+      q: "Is this replacing recruiters with AI?",
+      a: "No. The agents do the volume work — sourcing, first-pass scoring, screening calls, follow-ups. Licensed-market recruiters review every shortlist, run interviews and references, and close offers. You always have a human accountable for the hire.",
+    },
+    {
+      q: "How is candidate data handled?",
+      a: "Candidate data is confidential: encrypted in transit and at rest, scoped to your organization, never indexed by search engines, and never shared with third parties without an explicit integration you approve.",
+    },
+    {
+      q: "Do candidates know they're talking to an AI on screening calls?",
+      a: "Yes. Screening calls disclose that they're automated, and any candidate can request a human callback at any point in the process.",
+    },
+    {
+      q: "What roles do you cover?",
+      a: "Nursing, allied health, physicians and advanced practice, and healthcare leadership — plus the revenue-cycle and operations roles that keep a clinical enterprise running.",
+    },
+    {
+      q: "How fast is a first shortlist, really?",
+      a: "For most roles the agents produce a scored field within days, and your recruiter delivers a reviewed shortlist the same week. Highly specialized searches take longer — we'll tell you the honest timeline before we start.", // TODO: confirm SLA language
+    },
+  ],
 } as const;
 
 export const finalCta = {
-  heading: "The next hire is the strategy.",
-  body: "Tell us about the role. We will tell you, candidly, whether we are the right firm to fill it.",
-  primaryCta: { label: "Start a Search", href: "/contact" },
-  secondaryCta: { label: "Hire Nearshore Talent", href: "/practices/nearshore-latam" },
+  heading: "See your next shortlist before your next status meeting.",
+  body: "Book a 30-minute demo. Bring a real open role — we'll show you exactly what the pipeline would do with it.",
+  primaryCta: { label: "Book a demo", href: "/contact" },
+  /* TODO(phase 4): point to /services once the Recruitment Services page ships */
+  secondaryCta: { label: "Explore the platform", href: "/product" },
 } as const;

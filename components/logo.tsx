@@ -3,30 +3,23 @@ import { cn } from "@/lib/utils";
 import { site } from "@/content/site";
 
 /**
- * Text-based wordmark lockup: "ALIVIO" in the display serif with
- * "Search Partners" in letterspaced small caps beneath the baseline.
+ * Wordmark lockup, v2: tight grotesk "Alivio" with an accent-gradient
+ * terminal dot, "Search Partners" letterspaced beneath. The onInk prop
+ * is kept for call-site compatibility; both variants read on dark.
  */
 export function Logo({ onInk = false, className }: { onInk?: boolean; className?: string }) {
+  void onInk;
   return (
     <Link
       href="/"
       aria-label={`${site.name} — home`}
       className={cn("group inline-flex flex-col leading-none", className)}
     >
-      <span
-        className={cn(
-          "font-display text-[1.45rem] font-semibold tracking-[0.01em]",
-          onInk ? "text-paper" : "text-ink"
-        )}
-      >
-        {site.wordmark.primary.toUpperCase()}
+      <span className="font-display text-[1.4rem] font-bold tracking-[-0.03em] text-tx-1">
+        {site.wordmark.primary}
+        <span className="text-grad">.</span>
       </span>
-      <span
-        className={cn(
-          "mt-0.5 text-[0.58rem] font-medium uppercase tracking-[0.32em]",
-          onInk ? "text-stone-light" : "text-stone"
-        )}
-      >
+      <span className="mt-1 text-[0.56rem] font-medium uppercase tracking-[0.3em] text-tx-3">
         {site.wordmark.secondary}
       </span>
     </Link>

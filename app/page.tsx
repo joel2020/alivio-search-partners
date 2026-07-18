@@ -2,259 +2,227 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { HeroHome } from "@/components/hero-home";
 import { Reveal } from "@/components/reveal";
-import { SectionHeader, LedgerRule, Eyebrow } from "@/components/ledger";
-import { PracticeCard } from "@/components/practice-card";
-import { CostComparison } from "@/components/cost-comparison";
-import { InsightCard } from "@/components/insight-card";
+import { Section, SectionHeading } from "@/components/section";
+import { LogoMarquee } from "@/components/logo-marquee";
+import { PipelineFlow } from "@/components/pipeline-flow";
+import { BentoGrid, BentoCard } from "@/components/bento";
+import { CountUp } from "@/components/count-up";
+import { TestimonialCard } from "@/components/testimonial-card";
+import { Badge } from "@/components/ui/badge";
+import { Faq } from "@/components/faq";
 import { CtaBand } from "@/components/cta-band";
-import { getAllInsights } from "@/lib/insights";
 import { site } from "@/content/site";
 import {
-  credibility,
-  practicesIntro,
-  practiceCards,
-  howWeWork,
-  results,
-  nearshoreSpotlight,
-  engineSpotlight,
+  trustBar,
+  problem,
+  howItWorks,
+  capabilities,
+  metrics,
   testimonials,
-  insightsTeaser,
+  integrations,
+  engagement,
+  faq,
   finalCta,
 } from "@/content/home";
 
 export const metadata: Metadata = {
-  title: `${site.name} — Executive Search Firm | New York · Miami · Bogotá`,
+  title: `${site.name} — AI Recruiting Agents for Healthcare Employers`,
   description:
-    "Retained executive search for healthcare, technology, and nearshore LATAM talent. Offices in New York, Miami, and Bogotá. Complete market maps, calibrated shortlists in 21 days, 12-month guarantee.",
+    "Alivio's AI recruiting agents source, score, and voice-screen qualified nurses, clinicians, and healthcare leaders — so clinical roles fill in days, not months. Human recruiters close every hire.",
 };
 
 export default function HomePage() {
-  const insights = getAllInsights().slice(0, 3);
-
   return (
-    <>
+    <div className="bg-bg0 text-tx-1">
       <HeroHome />
 
-      {/* Credibility bar */}
-      <section className="bg-paper-dim" aria-label="Credibility">
+      {/* Trust bar */}
+      <section className="border-y border-line-1 bg-bg1" aria-label="Trusted by">
         <div className="mx-auto max-w-6xl px-6 py-12 lg:px-8">
           <Reveal>
-            <p className="text-eyebrow text-stone">{credibility.statLine}</p>
-            {/* TODO: replace typeset placeholder names with real grayscale client logos */}
-            <ul className="mt-8 grid grid-cols-2 gap-x-8 gap-y-6 sm:grid-cols-3 lg:grid-cols-6">
-              {credibility.logos.map((logo) => (
-                <li
-                  key={logo}
-                  className="font-display text-sm font-medium tracking-wide text-stone/70"
-                >
-                  {logo}
-                </li>
-              ))}
-            </ul>
+            <LogoMarquee items={trustBar.logos} label={trustBar.label} />
           </Reveal>
         </div>
       </section>
 
-      {/* Practices */}
-      <section className="bg-paper" aria-label="Practices">
+      {/* The problem */}
+      <Section ariaLabel="The problem">
+        <SectionHeading eyebrow={problem.eyebrow} heading={problem.heading} body={problem.body} />
+        <div className="mt-14 grid gap-4 md:grid-cols-3">
+          {problem.points.map((point, i) => (
+            <Reveal key={point.label} delay={i * 0.08}>
+              <div className="glass h-full rounded-xl p-7">
+                <p className="font-display text-headline-sm font-semibold text-tx-1">
+                  {point.stat}
+                </p>
+                <p className="mt-3 text-sm leading-relaxed text-tx-2">{point.label}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </Section>
+
+      {/* How it works — agent pipeline */}
+      <section id="how-it-works" aria-label="How it works" className="scroll-mt-24 bg-bg1">
         <div className="mx-auto max-w-6xl px-6 py-20 lg:px-8 lg:py-28">
-          <Reveal>
-            <SectionHeader
-              eyebrow={practicesIntro.eyebrow}
-              heading={practicesIntro.heading}
-              body={practicesIntro.body}
-            />
-          </Reveal>
-          <div className="mt-16 grid gap-12 md:grid-cols-3 md:gap-8">
-            {practiceCards.map((card, i) => (
-              <Reveal key={card.href} delay={i * 0.08}>
-                <PracticeCard {...card} />
-              </Reveal>
+          <SectionHeading
+            eyebrow={howItWorks.eyebrow}
+            heading={howItWorks.heading}
+            body={howItWorks.body}
+          />
+          <PipelineFlow steps={howItWorks.steps} />
+        </div>
+      </section>
+
+      {/* Capabilities bento */}
+      <Section ariaLabel="Platform capabilities">
+        <SectionHeading
+          eyebrow={capabilities.eyebrow}
+          heading={capabilities.heading}
+          body={capabilities.body}
+        />
+        <div className="mt-14">
+          <BentoGrid>
+            {capabilities.cards.map((card, i) => (
+              <BentoCard
+                key={card.title}
+                eyebrow={card.eyebrow}
+                title={card.title}
+                body={card.body}
+                wide={"wide" in card && card.wide}
+                delay={i * 0.06}
+              />
             ))}
-          </div>
+          </BentoGrid>
         </div>
-      </section>
+      </Section>
 
-      {/* How we work */}
-      <section className="bg-paper-dim" aria-label="How we work">
+      {/* Metrics band */}
+      <section aria-label="Results" className="border-y border-line-1 bg-bg1">
         <div className="mx-auto max-w-6xl px-6 py-20 lg:px-8 lg:py-28">
-          <Reveal>
-            <SectionHeader
-              eyebrow={howWeWork.eyebrow}
-              heading={howWeWork.heading}
-              body={howWeWork.body}
-            />
-          </Reveal>
-          <ol className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
-            {howWeWork.steps.map((step, i) => (
-              <Reveal key={step.name} as="li" delay={i * 0.08}>
-                <LedgerRule labels={[`Step ${step.number}`, step.window]} />
-                <h3 className="font-display mt-6 text-xl font-medium text-ink">{step.name}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-stone">{step.body}</p>
-              </Reveal>
-            ))}
-          </ol>
-          <Reveal className="mt-12">
-            <Link
-              href={howWeWork.link.href}
-              className="inline-flex items-center gap-2 text-sm text-terra transition-colors hover:text-terra-dark"
-            >
-              {howWeWork.link.label}
-              <svg width="14" height="10" viewBox="0 0 14 10" aria-hidden="true">
-                <path d="M0 5h12M8.5 1L13 5l-4.5 4" fill="none" stroke="currentColor" strokeWidth="1.2" />
-              </svg>
-            </Link>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* Results — dark band */}
-      <section className="on-ink bg-ink" aria-label="Results">
-        <div className="mx-auto max-w-6xl px-6 py-20 lg:px-8 lg:py-28">
-          <Reveal>
-            <SectionHeader onInk eyebrow={results.eyebrow} heading={results.heading} />
-          </Reveal>
-          <dl className="mt-16 grid gap-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
-            {results.stats.map((stat, i) => (
+          <SectionHeading eyebrow={metrics.eyebrow} heading={metrics.heading} />
+          <dl className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+            {metrics.stats.map((stat, i) => (
               <Reveal key={stat.label} delay={i * 0.08}>
-                <div className="border-t border-line-ink pt-5">
-                  <dd className="font-display text-headline-md font-medium text-paper">
-                    {stat.value}
+                <div className="border-t border-line-2 pt-5">
+                  <dd className="font-display text-headline-md font-semibold text-tx-1">
+                    <CountUp value={stat.value} suffix={stat.suffix} />
                   </dd>
-                  <dt className="mt-3 text-sm leading-relaxed text-stone-light">{stat.label}</dt>
+                  <dt className="mt-3 text-sm leading-relaxed text-tx-2">{stat.label}</dt>
                 </div>
               </Reveal>
             ))}
           </dl>
           <Reveal className="mt-14">
-            <p className="max-w-2xl border-l border-terra pl-5 text-sm leading-relaxed text-paper/90">
-              {results.note}
+            <p className="max-w-2xl border-l-2 border-acc pl-5 text-sm leading-relaxed text-tx-1/90">
+              {metrics.note}
             </p>
           </Reveal>
         </div>
       </section>
 
-      {/* Nearshore spotlight */}
-      <section className="bg-paper" aria-label="Nearshore talent spotlight">
-        <div className="mx-auto max-w-6xl px-6 py-20 lg:px-8 lg:py-28">
-          <div className="grid gap-16 lg:grid-cols-2 lg:gap-20">
-            <Reveal>
-              <SectionHeader
-                eyebrow={nearshoreSpotlight.eyebrow}
-                heading={nearshoreSpotlight.heading}
-                body={nearshoreSpotlight.body}
-              />
-              <ul className="mt-10 space-y-4">
-                {nearshoreSpotlight.points.map((point) => (
-                  <li key={point} className="flex gap-4 text-sm leading-relaxed text-ink">
-                    <span aria-hidden="true" className="mt-2.5 h-px w-6 shrink-0 bg-terra" />
-                    {point}
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href={nearshoreSpotlight.cta.href}
-                className="mt-10 inline-block border border-ink/25 px-7 py-3.5 text-sm text-ink transition-colors hover:border-terra hover:text-terra"
-              >
-                {nearshoreSpotlight.cta.label}
-              </Link>
-            </Reveal>
-            <Reveal delay={0.12} className="self-center">
-              <CostComparison
-                title={nearshoreSpotlight.comparison.title}
-                note={nearshoreSpotlight.comparison.note}
-                rows={nearshoreSpotlight.comparison.rows}
-                takeaway={nearshoreSpotlight.comparison.takeaway}
-              />
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* AI Candidate Engine spotlight */}
-      <section className="bg-paper" aria-label="AI Candidate Engine">
-        <div className="mx-auto max-w-6xl px-6 pb-20 lg:px-8 lg:pb-28">
-          <Reveal>
-            <div className="border border-line bg-paper-dim/60 p-8 sm:p-12">
-              <SectionHeader
-                eyebrow={engineSpotlight.eyebrow}
-                heading={engineSpotlight.heading}
-                body={engineSpotlight.body}
-              />
-              <ul className="mt-8 space-y-4">
-                {engineSpotlight.points.map((point) => (
-                  <li key={point} className="flex gap-4 text-sm leading-relaxed text-ink">
-                    <span aria-hidden="true" className="mt-2.5 h-px w-6 shrink-0 bg-terra" />
-                    {point}
-                  </li>
-                ))}
-              </ul>
-              <Link
-                href={engineSpotlight.cta.href}
-                className="mt-10 inline-block border border-ink bg-ink px-7 py-3.5 text-sm text-paper transition-colors hover:border-terra hover:bg-terra"
-              >
-                {engineSpotlight.cta.label}
-              </Link>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
       {/* Testimonials */}
-      <section className="bg-paper-dim" aria-label="Client testimonials">
-        <div className="mx-auto max-w-6xl px-6 py-20 lg:px-8 lg:py-28">
-          <Reveal>
-            <div className="border-t border-line pt-4">
-              <Eyebrow>{testimonials.eyebrow}</Eyebrow>
-            </div>
+      <Section ariaLabel="Client testimonials">
+        <SectionHeading eyebrow={testimonials.eyebrow} heading="Hiring leaders on the pipeline." />
+        <div className="mt-14 grid gap-4 lg:grid-cols-3">
+          {testimonials.items.map((item, i) => (
+            <Reveal key={i} delay={i * 0.08}>
+              <TestimonialCard {...item} />
+            </Reveal>
+          ))}
+        </div>
+      </Section>
+
+      {/* Integrations strip */}
+      <section aria-label="Integrations" className="border-y border-line-1 bg-bg1">
+        <div className="mx-auto max-w-6xl px-6 py-16 lg:px-8 lg:py-20">
+          <SectionHeading
+            eyebrow={integrations.eyebrow}
+            heading={integrations.heading}
+            body={integrations.body}
+          />
+          <Reveal className="mt-10">
+            <ul className="flex flex-wrap gap-3">
+              {integrations.items.map((item) => (
+                <li key={item.name}>
+                  <Badge variant={item.status === "live" ? "accent" : "soon"} className="px-4 py-2">
+                    {item.name}
+                    {item.status === "soon" ? " · coming soon" : ""}
+                  </Badge>
+                </li>
+              ))}
+            </ul>
+            {/* TODO(phase 4): waitlist form wired to integration_waitlist */}
           </Reveal>
-          <div className="mt-14 grid gap-12 lg:grid-cols-3 lg:gap-10">
-            {testimonials.items.map((item, i) => (
-              <Reveal key={i} delay={i * 0.08}>
-                <blockquote className="flex h-full flex-col">
-                  <p className="font-display text-lg font-normal italic leading-relaxed text-ink">
-                    &ldquo;{item.quote}&rdquo;
-                  </p>
-                  <footer className="mt-6 border-t border-line pt-4">
-                    {/* TODO: replace with real, attributed client testimonials */}
-                    <p className="text-sm font-medium text-ink">{item.name}</p>
-                    <p className="mt-1 text-xs leading-relaxed text-stone">
-                      {item.title} · {item.company}
-                    </p>
-                  </footer>
-                </blockquote>
-              </Reveal>
-            ))}
-          </div>
         </div>
       </section>
 
-      {/* Insights teaser */}
-      <section className="bg-paper" aria-label="Insights">
-        <div className="mx-auto max-w-6xl px-6 py-20 lg:px-8 lg:py-28">
-          <Reveal>
-            <div className="flex items-end justify-between border-t border-line pt-4">
-              <div>
-                <Eyebrow>{insightsTeaser.eyebrow}</Eyebrow>
-                <h2 className="font-display text-headline-md mt-6 font-medium text-ink">
-                  {insightsTeaser.heading}
-                </h2>
-              </div>
-              <Link
-                href={insightsTeaser.link.href}
-                className="hidden text-sm text-terra transition-colors hover:text-terra-dark sm:block"
-              >
-                {insightsTeaser.link.label} →
-              </Link>
-            </div>
-          </Reveal>
-          <div className="mt-14 grid gap-12 md:grid-cols-3 md:gap-8">
-            {insights.map((insight, i) => (
-              <Reveal key={insight.slug} delay={i * 0.08}>
-                <InsightCard insight={insight} />
+      {/* Engagement model */}
+      <Section ariaLabel="Engagement model">
+        <SectionHeading
+          eyebrow={engagement.eyebrow}
+          heading={engagement.heading}
+          body={engagement.body}
+        />
+        <div className="mt-14 grid gap-4 lg:grid-cols-3">
+          {engagement.tiers.map((tier, i) => {
+            const featured = "featured" in tier && tier.featured;
+            return (
+              <Reveal key={tier.name} delay={i * 0.08}>
+                <article
+                  className={
+                    featured
+                      ? "glass-raised relative h-full rounded-xl border-acc/30 p-7"
+                      : "glass h-full rounded-xl p-7"
+                  }
+                >
+                  {featured ? (
+                    <Badge variant="accent" className="absolute -top-3 left-6">
+                      Most common
+                    </Badge>
+                  ) : null}
+                  <h3 className="font-display text-xl font-semibold tracking-tight text-tx-1">
+                    {tier.name}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-tx-2">{tier.description}</p>
+                  <ul className="mt-6 space-y-3">
+                    {tier.bullets.map((bullet) => (
+                      <li key={bullet} className="flex gap-3 text-sm text-tx-1">
+                        <span aria-hidden="true" className="mt-2 h-px w-4 shrink-0 bg-acc" />
+                        {bullet}
+                      </li>
+                    ))}
+                  </ul>
+                </article>
               </Reveal>
-            ))}
-          </div>
+            );
+          })}
+        </div>
+        <Reveal className="mt-10">
+          <Link
+            href={engagement.cta.href}
+            className="inline-flex items-center gap-2 text-sm font-medium text-acc transition-colors hover:text-acc-2"
+          >
+            {engagement.cta.label}
+            <svg width="14" height="10" viewBox="0 0 14 10" aria-hidden="true">
+              <path
+                d="M0 5h12M8.5 1L13 5l-4.5 4"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.2"
+              />
+            </svg>
+          </Link>
+        </Reveal>
+      </Section>
+
+      {/* FAQ */}
+      <section aria-label="Frequently asked questions" className="bg-bg1">
+        <div className="mx-auto grid max-w-6xl gap-12 px-6 py-20 lg:grid-cols-[0.8fr_1.2fr] lg:px-8 lg:py-28">
+          <SectionHeading eyebrow={faq.eyebrow} heading={faq.heading} />
+          <Reveal delay={0.1}>
+            <Faq items={faq.items} />
+          </Reveal>
         </div>
       </section>
 
@@ -264,6 +232,6 @@ export default function HomePage() {
         primary={finalCta.primaryCta}
         secondary={finalCta.secondaryCta}
       />
-    </>
+    </div>
   );
 }

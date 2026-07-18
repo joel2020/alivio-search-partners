@@ -8,8 +8,8 @@ import { Logo } from "@/components/logo";
 import { nav } from "@/content/site";
 
 /**
- * Sticky header. Transparent over the hero (dark pages get on-ink
- * treatment), solid paper with a hairline once scrolled.
+ * Sticky header, v2: transparent over the hero, dark glass with a
+ * hairline once scrolled. The primary CTA stays visible at all times.
  */
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
@@ -54,19 +54,21 @@ export function SiteHeader() {
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-colors duration-300",
-        solid ? "border-b border-line bg-paper/95 backdrop-blur-sm" : "border-b border-transparent bg-transparent"
+        solid
+          ? "border-b border-line-1 bg-bg0/85 backdrop-blur-md"
+          : "border-b border-transparent bg-transparent"
       )}
     >
       <div className="mx-auto flex h-[4.5rem] max-w-6xl items-center justify-between px-6 lg:px-8">
         <Logo />
 
-        <nav aria-label="Primary" className="hidden items-center gap-8 md:flex">
+        <nav aria-label="Primary" className="hidden items-center gap-7 md:flex">
           <div className="relative" ref={dropdownRef}>
             <button
               type="button"
               className={cn(
-                "inline-flex items-center gap-1.5 text-sm text-ink transition-colors hover:text-terra",
-                pathname.startsWith("/practices") && "text-terra"
+                "inline-flex items-center gap-1.5 text-sm text-tx-2 transition-colors hover:text-tx-1",
+                pathname.startsWith("/practices") && "text-tx-1"
               )}
               aria-expanded={practicesOpen}
               aria-haspopup="true"
@@ -84,13 +86,13 @@ export function SiteHeader() {
               </svg>
             </button>
             {practicesOpen ? (
-              <div className="absolute left-0 top-full mt-4 w-72 border border-line bg-paper shadow-[0_16px_40px_rgba(12,27,42,0.10)]">
+              <div className="glass-raised absolute left-0 top-full mt-4 w-72 overflow-hidden rounded-xl bg-bg2">
                 {nav.practices.items.map((item) => (
                   <Link
                     key={item.href}
                     href={item.href}
                     onClick={closeMenus}
-                    className="block border-b border-line px-5 py-3.5 text-sm text-ink transition-colors last:border-b-0 hover:bg-paper-dim hover:text-terra"
+                    className="block border-b border-line-1 px-5 py-3.5 text-sm text-tx-1 transition-colors last:border-b-0 hover:bg-srf-2 hover:text-acc"
                   >
                     {item.label}
                   </Link>
@@ -104,8 +106,8 @@ export function SiteHeader() {
               key={link.href}
               href={link.href}
               className={cn(
-                "text-sm text-ink transition-colors hover:text-terra",
-                pathname === link.href && "text-terra"
+                "text-sm text-tx-2 transition-colors hover:text-tx-1",
+                pathname === link.href && "text-tx-1"
               )}
             >
               {link.label}
@@ -114,7 +116,7 @@ export function SiteHeader() {
 
           <Link
             href={nav.cta.href}
-            className="border border-ink bg-ink px-5 py-2.5 text-sm text-paper transition-colors hover:border-terra hover:bg-terra"
+            className="inline-flex h-10 items-center rounded-lg bg-acc px-5 text-sm font-semibold text-acc-ink transition-colors hover:bg-acc-2"
           >
             {nav.cta.label}
           </Link>
@@ -129,13 +131,13 @@ export function SiteHeader() {
         >
           <span
             className={cn(
-              "h-px w-5 bg-ink transition-transform",
+              "h-px w-5 bg-tx-1 transition-transform",
               mobileOpen && "translate-y-[3.5px] rotate-45"
             )}
           />
           <span
             className={cn(
-              "h-px w-5 bg-ink transition-transform",
+              "h-px w-5 bg-tx-1 transition-transform",
               mobileOpen && "-translate-y-[3.5px] -rotate-45"
             )}
           />
@@ -143,14 +145,17 @@ export function SiteHeader() {
       </div>
 
       {mobileOpen ? (
-        <nav aria-label="Mobile" className="border-t border-line bg-paper px-6 pb-8 pt-4 md:hidden">
-          <p className="text-eyebrow pb-2 text-stone">{nav.practices.label}</p>
+        <nav
+          aria-label="Mobile"
+          className="border-t border-line-1 bg-bg0/95 px-6 pb-8 pt-4 backdrop-blur-md md:hidden"
+        >
+          <p className="text-eyebrow pb-2 text-tx-3">{nav.practices.label}</p>
           {nav.practices.items.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               onClick={closeMenus}
-              className="block border-b border-line py-3 text-base text-ink"
+              className="block border-b border-line-1 py-3 text-base text-tx-1"
             >
               {item.label}
             </Link>
@@ -161,7 +166,7 @@ export function SiteHeader() {
                 key={link.href}
                 href={link.href}
                 onClick={closeMenus}
-                className="block border-b border-line py-3 text-base text-ink"
+                className="block border-b border-line-1 py-3 text-base text-tx-1"
               >
                 {link.label}
               </Link>
@@ -170,7 +175,7 @@ export function SiteHeader() {
           <Link
             href={nav.cta.href}
             onClick={closeMenus}
-            className="mt-6 block border border-ink bg-ink px-5 py-3 text-center text-sm text-paper"
+            className="mt-6 block rounded-lg bg-acc px-5 py-3 text-center text-sm font-semibold text-acc-ink"
           >
             {nav.cta.label}
           </Link>

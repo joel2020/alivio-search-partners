@@ -53,7 +53,7 @@ export const nav = {
     { label: "Positions", href: "/positions" },
     { label: "Contact", href: "/contact" },
   ],
-  cta: { label: "Start a Search", href: "/contact" },
+  cta: { label: "Book a demo", href: "/contact" },
 } as const;
 
 export const footer = {
@@ -84,6 +84,8 @@ export const footer = {
     button: "Subscribe",
     success: "You are on the list.",
   },
+  privacyNote:
+    "Candidate and client data is confidential: encrypted, organization-scoped, never indexed by search engines, and never shared without an integration you approve.",
   legal: {
     line: `© ${new Date().getFullYear()} Alivio Search Partners LLC. All rights reserved.`,
     links: [

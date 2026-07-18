@@ -12,12 +12,12 @@ export function NewsletterForm() {
   const [done, setDone] = useState(false);
 
   if (done) {
-    return <p className="text-sm text-stone-light">{footer.newsletter.success}</p>;
+    return <p className="text-sm text-tx-2">{footer.newsletter.success}</p>;
   }
 
   return (
     <form
-      className="flex border-b border-line-ink"
+      className="flex border-b border-line-2"
       onSubmit={(e) => {
         e.preventDefault();
         if (email.includes("@")) setDone(true);
@@ -33,11 +33,11 @@ export function NewsletterForm() {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder={footer.newsletter.placeholder}
-        className="w-full bg-transparent py-2.5 text-sm text-paper placeholder:text-stone-light/70 focus:outline-none"
+        className="w-full bg-transparent py-2.5 text-sm text-tx-1 placeholder:text-tx-3 focus:outline-none"
       />
       <button
         type="submit"
-        className="shrink-0 py-2.5 pl-4 text-eyebrow text-terra-light transition-colors hover:text-paper"
+        className="shrink-0 py-2.5 pl-4 text-eyebrow text-acc transition-colors hover:text-acc-2"
       >
         {footer.newsletter.button}
       </button>
